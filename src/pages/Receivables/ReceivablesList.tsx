@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useReceivables } from '../../context/ReceivableContext';
 import { useClients } from '../../context/ClientContext';
-import { AlertCircle, CheckCircle, Clock, Search, Mail, Phone, DollarSign, TrendingDown } from 'lucide-react';
+import { AlertCircle, Clock, Search, Mail, Phone, DollarSign, TrendingDown } from 'lucide-react';
 import type { Receivable } from '../../types/receivable';
 
 export const ReceivablesList: React.FC = () => {

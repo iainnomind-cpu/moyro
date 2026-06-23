@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useInventory } from '../../context/InventoryContext';
 import { ArrowLeft, Edit, MapPin, Box, Printer, AlertTriangle } from 'lucide-react';

@@ -6,8 +6,7 @@ import { useReceivables } from '../../context/ReceivableContext';
 import { usePurchases } from '../../context/PurchaseContext';
 import {
   TrendingUp, TrendingDown, Package, AlertTriangle, Wallet,
-  Users, ShoppingCart, ArrowRight, Clock, CheckCircle,
-  BarChart2, RefreshCw, DollarSign, Activity
+  ShoppingCart, ArrowRight, CheckCircle, Activity
 } from 'lucide-react';
 
 /* ── Mini bar chart rendered in pure CSS/SVG ── */
@@ -83,8 +82,6 @@ export const Dashboard: React.FC = () => {
 
   const [reportRange, setReportRange] = useState<'dia' | 'semana' | 'mes'>('semana');
 
-  const today = new Date().toISOString().split('T')[0];
-
   // ── Inventory KPIs ──
   const criticalProducts = useMemo(() => products.filter(p => p.stock <= p.minStock), [products]);
   const inventoryValue = useMemo(() => products.reduce((s, p) => s + p.price * p.stock, 0), [products]);
@@ -94,12 +91,6 @@ export const Dashboard: React.FC = () => {
   const totalCartera = useMemo(() => receivables.reduce((s, r) => s + r.balance, 0), [receivables]);
   const vencidoCartera = useMemo(() => receivables.filter(r => r.status === 'vencido').reduce((s, r) => s + r.balance, 0), [receivables]);
   const pendienteCount = receivables.filter(r => r.balance > 0).length;
-
-  // ── Clients KPIs ──
-  const creditClients = clients.filter(c => c.type === 'credito').length;
-
-  // ── Purchase KPIs ──
-  const totalCompras = purchaseHistory.reduce((s, e) => s + e.quantity * e.unitCost, 0);
 
   // ── Mock sales data for sparklines / bar charts ──
   // In production, this would come from a SalesContext — for now use purchase history as proxy
@@ -144,7 +135,6 @@ export const Dashboard: React.FC = () => {
   }, [clients]);
 
   const formatMXN = (v: number) => `$${v.toLocaleString('es-MX', { maximumFractionDigits: 0 })}`;
-  const formatMXNFull = (v: number) => `$${v.toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
 
   return (
     <div className="animate-fade-in">

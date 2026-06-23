@@ -10,7 +10,6 @@ export const PointOfSale: React.FC = () => {
     cart,
     addToCart,
     updateQuantity,
-    removeFromCart,
     clearCart,
     selectedClient,
     setSelectedClient,

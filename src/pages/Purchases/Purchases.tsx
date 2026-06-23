@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useInventory } from '../../context/InventoryContext';
 import { usePurchases } from '../../context/PurchaseContext';
-import { ShoppingBag, AlertTriangle, Truck, FileCheck, CheckCircle, Plus } from 'lucide-react';
+import { ShoppingBag, AlertTriangle, Truck, FileCheck, CheckCircle } from 'lucide-react';
 
 export const Purchases: React.FC = () => {
   const { products } = useInventory();
