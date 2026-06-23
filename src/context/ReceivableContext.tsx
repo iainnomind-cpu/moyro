@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import type { Receivable, Payment, ReceivableStatus } from '../types/receivable';
 import { mockReceivables } from '../mocks/receivableMock';
 import { useClients } from './ClientContext';
@@ -43,7 +44,7 @@ export const ReceivableProvider: React.FC<{ children: ReactNode }> = ({ children
     const client = clients.find(c => c.id === clientId);
     if (!client || client.type !== 'credito') return;
 
-    const daysTerms = client.creditTermsDays || 30;
+    const daysTerms = client.creditDays || 30;
     
     const issueDate = new Date();
     const dueDate = new Date();

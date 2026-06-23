@@ -78,7 +78,7 @@ export const Dashboard: React.FC = () => {
   const { products } = useInventory();
   const { clients } = useClients();
   const { receivables } = useReceivables();
-  const { purchaseHistory, suppliers } = usePurchases();
+  const { suppliers } = usePurchases();
 
   const [reportRange, setReportRange] = useState<'dia' | 'semana' | 'mes'>('semana');
 

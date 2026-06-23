@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useClients } from '../../context/ClientContext';
 import { useReceivables } from '../../context/ReceivableContext';
-import { ArrowLeft, Edit, Mail, Phone, MapPin, CreditCard, Clock, FileText, Download, User, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, Edit, Mail, Phone, CreditCard, Clock, FileText, Download, User, ShoppingCart } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 import { StatementDocument } from './StatementDocument';
 

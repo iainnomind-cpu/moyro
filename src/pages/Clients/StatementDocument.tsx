@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import type { Client } from '../../types/client';
 import type { Receivable } from '../../types/receivable';
 
@@ -91,7 +91,7 @@ export const StatementDocument = forwardRef<HTMLDivElement, StatementDocumentPro
               </tr>
             </thead>
             <tbody>
-              {activeReceivables.map((item, idx) => (
+              {activeReceivables.map((item) => (
                 <tr key={item.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
                   <td style={{ padding: '12px 8px', fontSize: '13px', fontWeight: 'bold' }}>{item.id}</td>
                   <td style={{ padding: '12px 8px', fontSize: '13px', color: '#64748b' }}>{item.issueDate}</td>

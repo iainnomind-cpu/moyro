@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
 import type { Client, Transaction } from '../types/client';
 import { mockClients, mockTransactions } from '../mocks/clientsMock';
 
@@ -15,7 +16,7 @@ const ClientContext = createContext<ClientContextType | undefined>(undefined);
 
 export const ClientProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [clients, setClients] = useState<Client[]>(mockClients);
-  const [transactions, setTransactions] = useState<Transaction[]>(mockTransactions);
+  const [transactions] = useState<Transaction[]>(mockTransactions);
 
   const addClient = (newClientData: Omit<Client, 'id' | 'createdAt' | 'currentBalance' | 'totalPurchases'>) => {
     const newClient: Client = {
