@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Supplier, PurchaseHistory } from '../types/supplier';
 import { mockSuppliers, mockPurchaseHistory } from '../mocks/supplierMock';
 import { useInventory } from './InventoryContext';
+import { useFinance } from './FinanceContext';
 
 interface PurchaseContextType {
   suppliers: Supplier[];
@@ -23,6 +24,7 @@ export const PurchaseProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [purchaseHistory, setPurchaseHistory] = useState<PurchaseHistory[]>(mockPurchaseHistory);
   
   const { products, updateProduct } = useInventory();
+  const { registerPurchaseExpense } = useFinance();
 
   const registerPurchase = (
     productId: string,
@@ -53,6 +55,10 @@ export const PurchaseProvider: React.FC<{ children: ReactNode }> = ({ children }
         lastRestockDate: newHistory.date
       });
     }
+
+    // 3. Registrar egreso en Tesorería / Finanzas
+    const supplier = suppliers.find(s => s.id === supplierId);
+    registerPurchaseExpense(quantity * unitCost, supplier?.name || 'Proveedor Industrial', invoiceNumber);
   };
 
   return (

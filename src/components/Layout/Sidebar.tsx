@@ -1,8 +1,7 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, ShoppingCart, Package,
-  Users, FileText, Settings, Wallet, ShoppingBag, ChevronRight
+  Users, Settings, Wallet, ShoppingBag, ChevronRight, DollarSign
 } from 'lucide-react';
 import './Layout.css';
 import { useReceivables } from '../../context/ReceivableContext';
@@ -21,8 +20,8 @@ export const Sidebar: React.FC = () => {
     { name: 'Inventario', path: '/inventory', icon: <Package size={18} />, badge: criticalStock > 0 ? criticalStock : undefined, badgeColor: 'warning' },
     { name: 'Compras', path: '/purchases', icon: <ShoppingBag size={18} /> },
     { name: 'Cuentas x Cobrar', path: '/receivables', icon: <Wallet size={18} />, badge: overdueCount > 0 ? overdueCount : undefined, badgeColor: 'danger' },
+    { name: 'Finanzas & Caja', path: '/finance', icon: <DollarSign size={18} /> },
     { name: 'Clientes', path: '/clients', icon: <Users size={18} /> },
-    { name: 'Reportes', path: '/reports', icon: <FileText size={18} /> },
   ];
 
   const bottomItems = [

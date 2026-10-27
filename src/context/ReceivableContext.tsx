@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Receivable, Payment, ReceivableStatus } from '../types/receivable';
 import { mockReceivables } from '../mocks/receivableMock';
 import { useClients } from './ClientContext';
+import { useFinance } from './FinanceContext';
 
 interface ReceivableContextType {
   receivables: Receivable[];
@@ -17,6 +18,7 @@ const ReceivableContext = createContext<ReceivableContextType | undefined>(undef
 export const ReceivableProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [receivables, setReceivables] = useState<Receivable[]>(mockReceivables);
   const { clients } = useClients();
+  const { registerReceivablePaymentIncome } = useFinance();
 
   // Función auxiliar para determinar el estado de la deuda en base a la fecha de hoy
   const calculateStatus = (dueDate: string, balance: number): ReceivableStatus => {
@@ -80,6 +82,12 @@ export const ReceivableProvider: React.FC<{ children: ReactNode }> = ({ children
   };
 
   const registerPayment = (receivableId: string, amount: number, method: Payment['method'], reference?: string) => {
+    const targetReceivable = receivables.find(r => r.id === receivableId);
+    if (targetReceivable) {
+      const client = clients.find(c => c.id === targetReceivable.clientId);
+      registerReceivablePaymentIncome(amount, method, client?.name || 'Cliente Cartera', reference);
+    }
+
     setReceivables(prev => prev.map(r => {
       if (r.id !== receivableId) return r;
       

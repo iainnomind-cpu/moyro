@@ -4,9 +4,10 @@ import { useInventory } from '../../context/InventoryContext';
 import { useClients } from '../../context/ClientContext';
 import { useReceivables } from '../../context/ReceivableContext';
 import { usePurchases } from '../../context/PurchaseContext';
+import { useFinance } from '../../context/FinanceContext';
 import {
   TrendingUp, TrendingDown, Package, AlertTriangle, Wallet,
-  ShoppingCart, ArrowRight, CheckCircle, Activity
+  ShoppingCart, ArrowRight, CheckCircle, Activity, DollarSign
 } from 'lucide-react';
 
 /* ── Mini bar chart rendered in pure CSS/SVG ── */
@@ -79,6 +80,7 @@ export const Dashboard: React.FC = () => {
   const { clients } = useClients();
   const { receivables } = useReceivables();
   const { suppliers } = usePurchases();
+  const { totalLiquidity, cashBalance, bankBalance } = useFinance();
 
   const [reportRange, setReportRange] = useState<'dia' | 'semana' | 'mes'>('semana');
 
@@ -156,6 +158,44 @@ export const Dashboard: React.FC = () => {
             <ShoppingCart size={16} /> Nueva Venta
           </Link>
         </div>
+      </div>
+
+      {/* ── Resumen Rápido de Finanzas & Tesorería ── */}
+      <div
+        className="card"
+        style={{
+          padding: '0.85rem 1.25rem',
+          marginBottom: '1.25rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          background: 'linear-gradient(90deg, var(--bg-surface), var(--bg-surface-2))',
+          borderLeft: '4px solid var(--primary)'
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ padding: '6px', borderRadius: 'var(--radius-md)', background: 'var(--primary-light)', color: 'var(--primary)' }}>
+            <DollarSign size={18} />
+          </div>
+          <div>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>Tesorería & Flujo Disponible:</span>{' '}
+            <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary)' }}>{formatMXN(totalLiquidity)}</span>
+            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginLeft: '0.75rem' }}>
+              ({formatMXN(cashBalance)} Caja Chica · {formatMXN(bankBalance)} Bancos)
+            </span>
+          </div>
+        </div>
+
+        <Link
+          to="/finance"
+          className="btn btn-secondary"
+          style={{ fontSize: '0.82rem', padding: '0.4rem 0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
+        >
+          <span>Ver Finanzas & Arqueo</span>
+          <ArrowRight size={14} />
+        </Link>
       </div>
 
       {/* ── KPI Row ── */}

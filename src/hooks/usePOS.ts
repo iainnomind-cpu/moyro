@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useInventory } from '../context/InventoryContext';
 import { useClients } from '../context/ClientContext';
 import { useReceivables } from '../context/ReceivableContext';
+import { useFinance } from '../context/FinanceContext';
 import type { Product } from '../types/inventory';
 import type { Client } from '../types/client';
 
@@ -13,6 +14,7 @@ export const usePOS = () => {
   const { products, updateProduct } = useInventory();
   const { clients } = useClients();
   const { registerSaleDebt } = useReceivables();
+  const { registerPOSSaleIncome } = useFinance();
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
@@ -73,6 +75,12 @@ export const usePOS = () => {
       // Registrar en Cuentas por Cobrar si es cliente a crédito Y eligió pago a crédito
       if (selectedClient && selectedClient.type === 'credito' && isCreditSale) {
         registerSaleDebt(selectedClient.id, total, 'TICKET-AUTO', anticipo);
+        if (anticipo > 0) {
+          registerPOSSaleIncome(anticipo, 'efectivo', `ANTICIPO-${Math.floor(100 + Math.random() * 900)}`, selectedClient.name);
+        }
+      } else {
+        // Venta directa de contado
+        registerPOSSaleIncome(total, 'efectivo', `TICK-${Math.floor(100 + Math.random() * 900)}`, selectedClient?.name);
       }
 
       // TODO: Guardar transacción en el historial del cliente (Fase 1 extendida)
