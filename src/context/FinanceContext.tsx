@@ -194,7 +194,7 @@ export const FinanceProvider: React.FC<{ children: ReactNode }> = ({ children })
     });
   };
 
-  // Actualizar desglose de monedas y billetes en el Arqueo Activo
+  // Actualizar desglose de monedas y billetes en el Corte de Caja Activo
   const updateCashCloseDenominations = (denominations: CashDenominations, notes?: string) => {
     const calculatedCount =
       denominations.b1000 * 1000 +
@@ -214,7 +214,7 @@ export const FinanceProvider: React.FC<{ children: ReactNode }> = ({ children })
     }));
   };
 
-  // Cerrar Caja del Día (Arqueo Oficial)
+  // Cerrar Caja del Día (Corte Oficial)
   const closeCashDay = (countedCash: number, responsible: string, notes?: string): CashClose => {
     const finalClose: CashClose = {
       ...currentCashClose,
@@ -235,7 +235,7 @@ export const FinanceProvider: React.FC<{ children: ReactNode }> = ({ children })
   const openNewCashDay = (initialCash: number, responsible: string) => {
     const today = new Date().toISOString().split('T')[0];
     const newClose: CashClose = {
-      id: `ARQ-${new Date().getTime().toString().slice(-8)}`,
+      id: `CORTE-${new Date().getTime().toString().slice(-8)}`,
       date: today,
       openedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       initialCash,

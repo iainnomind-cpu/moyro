@@ -288,7 +288,7 @@ export const Finance: React.FC = () => {
             Módulo de Finanzas & Flujo de Caja
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>
-            Control de tesorería, arqueos de caja, gastos operativos y salud financiera industrial.
+            Control de tesorería, cortes de caja diarios, gastos operativos y salud financiera industrial.
           </p>
         </div>
 
@@ -368,7 +368,7 @@ export const Finance: React.FC = () => {
           }}
         >
           <Calculator size={17} />
-          <span>Arqueo y Corte Diario</span>
+          <span>Corte de Caja Diario</span>
           {currentCashClose.status === 'abierta' && (
             <span
               style={{
@@ -820,7 +820,7 @@ export const Finance: React.FC = () => {
       )}
 
       {/* ══════════════════════════════════════════════════════════════════════════
-          TAB 2: CORTE Y ARQUEO DE CAJA DIARIO
+          TAB 2: CORTE DE CAJA DIARIO
           ══════════════════════════════════════════════════════════════════════════ */}
       {activeTab === 'cash_close' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -841,7 +841,7 @@ export const Finance: React.FC = () => {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>
-                  Arqueo de Caja Chica / Mostrador: {currentCashClose.id}
+                  Corte de Caja Mostrador: {currentCashClose.id}
                 </h2>
                 <span
                   style={{
@@ -1106,7 +1106,7 @@ export const Finance: React.FC = () => {
               {/* Notas de cierre */}
               <div style={{ marginTop: '1rem' }}>
                 <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                  Observaciones / Notas del Arqueo:
+                  Observaciones / Notas del Corte de Caja:
                 </label>
                 <textarea
                   value={currentCashClose.notes || ''}
@@ -1126,7 +1126,7 @@ export const Finance: React.FC = () => {
             </div>
           </div>
 
-          {/* Historial de Arqueos Pasados */}
+          {/* Historial de Cortes de Caja Pasados */}
           <div className="card" style={{ padding: '1.25rem' }}>
             <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-primary)' }}>
               Historial de Cortes de Caja Anteriores

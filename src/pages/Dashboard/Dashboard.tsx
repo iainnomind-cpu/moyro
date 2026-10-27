@@ -193,7 +193,7 @@ export const Dashboard: React.FC = () => {
           className="btn btn-secondary"
           style={{ fontSize: '0.82rem', padding: '0.4rem 0.85rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
         >
-          <span>Ver Finanzas & Arqueo</span>
+          <span>Ver Finanzas & Caja</span>
           <ArrowRight size={14} />
         </Link>
       </div>

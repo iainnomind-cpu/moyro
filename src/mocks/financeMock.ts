@@ -157,7 +157,7 @@ export const mockFinancialTransactions: FinancialTransaction[] = [
 ];
 
 export const mockInitialCashClose: CashClose = {
-  id: 'ARQ-20260623',
+  id: 'CORTE-20260623',
   date: new Date().toISOString().split('T')[0],
   openedAt: '08:30',
   initialCash: 2500,
@@ -183,7 +183,7 @@ export const mockInitialCashClose: CashClose = {
 
 export const mockHistoricalCashCloses: CashClose[] = [
   {
-    id: 'ARQ-20260622',
+    id: 'CORTE-20260622',
     date: '2026-06-22',
     openedAt: '08:30',
     closedAt: '18:15',
@@ -199,7 +199,7 @@ export const mockHistoricalCashCloses: CashClose[] = [
     notes: 'Cierre exacto. Depósito de $5,000 realizado a BBVA.'
   },
   {
-    id: 'ARQ-20260621',
+    id: 'CORTE-20260621',
     date: '2026-06-21',
     openedAt: '08:30',
     closedAt: '18:00',
